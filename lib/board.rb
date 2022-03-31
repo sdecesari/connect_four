@@ -9,7 +9,7 @@ class Board
 
   def create_board
     board = Array.new(@height) {Array.new(@column) {"."}}
-
+      board.unshift(["ABCDEFG"])
     board
   end
 
@@ -19,10 +19,16 @@ class Board
     end
   end
 
+  # def header
+  #
+  # end
+
+
+
 
 end
 
-print 'ABCDEFG'
+# print 'ABCDEFG'
 game_board = Board.new(7,6)
 game_board.create_board
 game_board.display_board
