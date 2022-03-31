@@ -1,14 +1,15 @@
 require 'pry'
 class Board
-  attr_reader :height, :column
+  attr_reader :height, :column, :board
   def initialize(height, column)
     @height = height
     @column = column
+    @board = board
 
   end
 
   def create_board
-    board = Array.new(@height) {Array.new(@column) {"."}}
+    board = Array.new(@height) {Array.new(@column) {"."}} #why is array capitalized
       board.unshift(["ABCDEFG"])
     board
   end
@@ -19,16 +20,9 @@ class Board
     end
   end
 
-  # def header
-  #
-  # end
-
-
-
-
 end
 
-# print 'ABCDEFG'
-game_board = Board.new(7,6)
+p "Welcome to Connect Four!"
+game_board = Board.new(7,7)
 game_board.create_board
 game_board.display_board
