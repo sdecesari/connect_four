@@ -8,7 +8,7 @@ class Board
 
   def create_board
   @board = Array.new(6) {Array.new(7) {"."}}
-    @board.unshift(["ABCDEFG"])
+    @board.unshift([*('A'..'G')])
   end
 
   def display_board
