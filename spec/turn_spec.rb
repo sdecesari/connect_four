@@ -57,4 +57,11 @@ RSpec.describe Turn do
     expect(turn.place_piece).to eq('X')
   end
 
+  it 'computer can place a piece' do
+    game_board = Board.new
+    game_board.create_board
+    turn = Turn.new(game_board)
+
+    expect(turn.computer_place_piece).to eq('O')
+  end
 end
