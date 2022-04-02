@@ -1,4 +1,5 @@
 require './lib/board'
+require 'pry'
 class Turn
   attr_reader :gameboard, :user_column
 
@@ -9,9 +10,13 @@ class Turn
   end
 
   def input_column
+    if draw?
+      p "The game is a Draw!"
+    else
     p "input a column A-G"
     letter_column = gets().chomp!.to_sym
     @user_column = @board_hash[letter_column]
+    end
   end
 
   def valid_column?
@@ -46,4 +51,11 @@ class Turn
       @gameboard.board[get_row][@user_column] = 'O'
   end
 
+  def draw?
+    if @gameboard.board[1].find {|spot| spot == '.'}
+      return false
+    else
+      true
+    end
+  end
 end
