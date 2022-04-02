@@ -64,4 +64,12 @@ RSpec.describe Turn do
 
     expect(turn.computer_place_piece).to eq('O')
   end
+
+  it 'game is a draw' do
+    game_board = Board.new
+    game_board.create_board
+    turn = Turn.new(game_board)
+
+    expect(turn.draw?).to eq false
+  end
 end
