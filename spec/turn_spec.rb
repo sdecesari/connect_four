@@ -25,6 +25,7 @@ RSpec.describe Turn do
     game_board = Board.new
     game_board.create_board
     turn = Turn.new(game_board)
+
     expect(turn.valid_column?).to eq true
 
     turn.place_piece
@@ -47,4 +48,13 @@ RSpec.describe Turn do
 
     expect(turn.get_row).to eq(6)
   end
+
+  it 'can place a piece' do
+    game_board = Board.new
+    game_board.create_board
+    turn = Turn.new(game_board)
+
+    expect(turn.place_piece).to eq('X')
+  end
+
 end
