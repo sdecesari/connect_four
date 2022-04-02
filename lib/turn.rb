@@ -1,3 +1,4 @@
+require './lib/board'
 class Turn
   attr_reader :gameboard, :user_column
 
@@ -44,4 +45,5 @@ class Turn
   def computer_place_piece
       @gameboard.board[get_row][@user_column] = 'O'
   end
+
 end
