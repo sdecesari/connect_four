@@ -1,5 +1,3 @@
-require './lib/board'
-require 'pry'
 class Turn
   attr_reader :gameboard, :user_column
 
@@ -48,6 +46,7 @@ class Turn
   end
 
   def computer_place_piece
+      @user_column = rand(7)
       @gameboard.board[get_row][@user_column] = 'O'
   end
 
