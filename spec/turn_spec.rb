@@ -36,4 +36,15 @@ RSpec.describe Turn do
 
     expect(turn.valid_column?).to eq false
   end
+
+  xit 'has a row' do
+    turn = Turn.new
+    game_board.create_board
+    game_board = Board.new
+
+    turn.input_column
+    turn.get_row
+
+    expect(turn.get_row).to eq(6)
+  end
 end
