@@ -11,7 +11,7 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  it 'can input a column' do
+  xit 'can input a column' do
     game_board = Board.new
     game_board.create_board
     turn = Turn.new(game_board)
@@ -21,4 +21,19 @@ RSpec.describe Turn do
     expect(turn.input_column).to eq(2)
   end
 
+  it 'has a valid column' do
+    game_board = Board.new
+    game_board.create_board
+    turn = Turn.new(game_board)
+    expect(turn.valid_column?).to eq true
+
+    turn.place_piece
+    turn.place_piece
+    turn.place_piece
+    turn.place_piece
+    turn.place_piece
+    turn.place_piece
+
+    expect(turn.valid_column?).to eq false
+  end
 end
