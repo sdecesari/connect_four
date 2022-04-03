@@ -18,15 +18,11 @@ class Turn
   end
 
   def valid_column?
-    x = 6
-    while @gameboard.board[x][@user_column] == 'X' || @gameboard.board[x][@user_column] == 'O'
-      if x == 1
-        return false
-        break
-      end
-      x -= 1
+    if @gameboard.board[1][@user_column] == 'X' || @gameboard.board[1][@user_column] == 'O'
+      false
+    else
+      true
     end
-    true
   end
 
   def get_row
