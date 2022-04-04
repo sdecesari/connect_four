@@ -1,5 +1,5 @@
 class Turn
-  attr_reader :gameboard, :user_column
+  attr_reader :gameboard, :user_column, :row
 
   def initialize(gameboard)
     @gameboard = gameboard
@@ -83,6 +83,25 @@ class Turn
     while (@row + j) <= 6 && @user_column + j >= 0
       arr << @gameboard.board[@row + j][@user_column + j]
       j += 1
+    end
+    arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
+  end
+
+  def horizontal_win
+    @gameboard.board[@row].find_all{|piece| piece == 'X'}.length == 4 || @gameboard.board[@row].find_all{|piece| piece == 'O'}.length == 4
+  end
+
+  def vertical_win
+    arr = []
+    vert_up = 0
+    vert_down = 1
+    while @row - vert_up >= 1
+      arr << @gameboard.board[@row - vert_up][@user_column]
+      vert_up += 1
+    end
+    while @row + vert_down <= 6
+      arr << @gameboard.board[@row + vert_down][@user_column]
+       vert_down += 1
     end
     arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
   end
