@@ -42,18 +42,4 @@ class Game
     end
   end
 
-  # def game_over
-  #   main_menu
-  #   # @new_game = gets().chomp!
-  #   # if new_game == 'p'
-  #     # p "Enter p or q"
-  #     new_connect_four
-  #   # elsif new_game == 'q'
-  #   #   p "Goodbye!"
-  #   # else
-  #   #   game_over
-  #   # end
-  #
-  # end
-
 end
