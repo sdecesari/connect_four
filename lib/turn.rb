@@ -32,8 +32,10 @@ class Turn
       while @gameboard.board[@row][@user_column] == 'X' || @gameboard.board[@row][@user_column] == 'O'
         @row -= 1
       end
-    else
+    elsif !valid_column?
+      p 'Column is full. Please enter a new column'
       input_column
+      get_row
     end
     @row
   end
@@ -45,7 +47,12 @@ class Turn
 
   def computer_place_piece
       @user_column = rand(7)
-      @row = get_row
+      if valid_column?
+        @row = get_row
+      else
+        @user_column = rand(7)
+        computer_place_piece
+      end
       @gameboard.board[@row][@user_column] = 'O'
   end
 
@@ -54,6 +61,14 @@ class Turn
       return false
     else
       true
+    end
+  end
+
+  def consective_pieces(array, piece)
+    if array.chunk{|x| x}.select{|x, xs| x == piece}.map{|x, xs| xs.size }.max.nil?
+      0
+    else
+      array.chunk{|x| x}.select{|x, xs| x == piece}.map{|x, xs| xs.size }.max
     end
   end
 
@@ -66,10 +81,10 @@ class Turn
       k += 1
     end
     while (@row + j) <= 6 && @user_column - j >= 0
-      arr << @gameboard.board[@row + j][@user_column - j]
+      arr.prepend @gameboard.board[@row + j][@user_column - j]
       j += 1
     end
-    arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
+    consective_pieces(arr, "X") >= 4 || consective_pieces(arr, "O") >= 4
   end
 
   def diagonal_left_win
@@ -81,14 +96,14 @@ class Turn
       k += 1
     end
     while (@row + j) <= 6 && @user_column + j >= 0
-      arr << @gameboard.board[@row + j][@user_column + j]
+      arr.prepend @gameboard.board[@row + j][@user_column + j]
       j += 1
     end
-    arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
+    consective_pieces(arr, "X") >= 4 || consective_pieces(arr, "O") >= 4
   end
 
   def horizontal_win
-    @gameboard.board[@row].find_all{|piece| piece == 'X'}.length == 4 || @gameboard.board[@row].find_all{|piece| piece == 'O'}.length == 4
+    consective_pieces(@gameboard.board[@row], "X") >= 4 || consective_pieces(@gameboard.board[@row], "O") >= 4
   end
 
   def vertical_win
@@ -100,9 +115,9 @@ class Turn
       vert_up += 1
     end
     while @row + vert_down <= 6
-      arr << @gameboard.board[@row + vert_down][@user_column]
+      arr.prepend @gameboard.board[@row + vert_down][@user_column]
        vert_down += 1
     end
-    arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
+    consective_pieces(arr, "X") >= 4 || consective_pieces(arr, "O") >= 4
   end
 end
