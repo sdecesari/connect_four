@@ -99,7 +99,7 @@ class Turn
       arr.prepend @gameboard.board[@row + j][@user_column + j]
       j += 1
     end
-    consective_pieces(arr, "O")
+    consective_pieces(arr, "X") >= 4 || consective_pieces(arr, "O") >= 4
   end
 
   def horizontal_win
