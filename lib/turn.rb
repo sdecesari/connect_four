@@ -66,7 +66,7 @@ class Turn
       k += 1
     end
     while (@row + j) <= 6 && @user_column - j >= 0
-      arr << @gameboard.board[@row + j][@user_column - j]
+      arr.prepend @gameboard.board[@row + j][@user_column - j]
       j += 1
     end
     arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
@@ -81,7 +81,7 @@ class Turn
       k += 1
     end
     while (@row + j) <= 6 && @user_column + j >= 0
-      arr << @gameboard.board[@row + j][@user_column + j]
+      arr.prepend @gameboard.board[@row + j][@user_column + j]
       j += 1
     end
     arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
@@ -100,7 +100,7 @@ class Turn
       vert_up += 1
     end
     while @row + vert_down <= 6
-      arr << @gameboard.board[@row + vert_down][@user_column]
+      arr.prepend @gameboard.board[@row + vert_down][@user_column]
        vert_down += 1
     end
     arr.find_all{|x| x == "X"}.length == 4 || arr.find_all{|o| o == "O"}.length == 4
