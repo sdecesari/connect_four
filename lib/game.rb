@@ -1,9 +1,3 @@
-require './lib/board'
-require './lib/turn'
-require 'pry'
-
-
-
 class Game
   def new_game(user_input)
     @new_game = user_input
@@ -41,8 +35,6 @@ class Game
         turn.winner
         new_connect_four
       end
-    else
-      new_connect_four
     end
   end
 

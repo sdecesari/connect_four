@@ -1,4 +1,3 @@
-require 'pry'
 class Board
   attr_reader :board
   def initialize
@@ -16,14 +15,4 @@ class Board
       puts line.join("")
     end
   end
-
-  def welcome
-    p "Welcome to Connect Four!"
-  end
-end
-
-
-# game_board = Board.new
-# game_board.welcome
-# game_board.create_board
-# game_board.display_board
+end 
