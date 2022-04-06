@@ -15,12 +15,13 @@ class Turn
   end
 
   def input_column
-    if draw?
-      p "The game is a Draw!"
-    else
     p "input a column A-G"
-    letter_column = gets().chomp!.to_sym
-    @user_column = @board_hash[letter_column]
+    letter_column = gets().chomp!.upcase.to_sym
+    if [:A,:B,:C,:D,:E,:F,:G].include? letter_column
+      @user_column = @board_hash[letter_column]
+    else
+      p "Invalid column!"
+      input_column
     end
   end
 
