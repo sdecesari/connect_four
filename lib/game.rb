@@ -16,12 +16,12 @@ class Game
 
   def new_connect_four
     welcome
-    @new_game = gets().chomp!
-    if @new_game == 'q'
+    @new_game = gets().chomp!.upcase
+    if @new_game == 'Q'
       p "Goodbye!"
       return
-    elsif @new_game == 'p'
-      while @new_game == 'p'
+    elsif @new_game == 'P'
+      while @new_game == 'P'
         game_board = Board.new
         game_board.create_board
         game_board.display_board
