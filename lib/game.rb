@@ -24,6 +24,7 @@ class Game
       while @new_game == 'p'
         game_board = Board.new
         game_board.create_board
+        game_board.display_board
         turn = Turn.new(game_board)
         turn.row(6)
         turn.user_column(0)
