@@ -35,6 +35,8 @@ class Game
         turn.winner
         new_connect_four
       end
+    else
+      new_connect_four
     end
   end
 end
