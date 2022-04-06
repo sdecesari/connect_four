@@ -4,8 +4,14 @@ class Turn
   def initialize(gameboard)
     @gameboard = gameboard
     @board_hash = { A: 0, B: 1, C: 2, D: 3, E: 4, F: 5, G:6 }
-    @user_column = 0
-    @row = 0
+  end
+
+  def user_column(number)
+    @user_column = number
+  end
+
+  def row(number)
+    @row = number
   end
 
   def input_column
@@ -119,5 +125,19 @@ class Turn
        vert_down += 1
     end
     consective_pieces(arr, "X") >= 4 || consective_pieces(arr, "O") >= 4
+  end
+
+  def win
+    diagonal_right_win || diagonal_left_win || horizontal_win || vertical_win || draw?
+  end
+
+  def winner
+    if draw?
+      p "The game is a draw! No one wins."
+    elsif @gameboard.board[@row][@user_column] == 'X'
+      p "Player wins!"
+    else
+      p "Computer wins!"
+    end
   end
 end
