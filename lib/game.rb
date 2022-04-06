@@ -45,5 +45,4 @@ class Game
       new_connect_four
     end
   end
-
 end
